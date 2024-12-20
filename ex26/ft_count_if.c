@@ -18,8 +18,8 @@ int	ft_count_if(char **tab, int (*f)(char*))
 	i = 0;
 	count = 0;
 	if (!tab)
-		return ;
-	while (i < length)
+		return (0);
+	while (tab[i])
 	{
 		if (f(tab[i]) == 1)
 			count++;
@@ -27,3 +27,13 @@ int	ft_count_if(char **tab, int (*f)(char*))
 	}
 	return (count);
 }
+/*int is_hello(char *str) {
+    return (strcmp(str, "hello") == 0) ? 1 : 0;
+}
+int	main()
+{
+	char *tab[] = {1, 2, 1, 5, NULL};
+	int count = ft_count_if(tab, is_hello);
+	printf("The string 'hello' appeared %d times.\n", count);
+	return (0);
+}*/

@@ -3,32 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbanzo-s <fbanzo-s@student.42barcelon      +#+  +:+       +#+         #
+#    By: fbanzo-s <fbanzo-s@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/19 14:01:14 by fbanzo-s          #+#    #+#              #
-#    Updated: 2024/12/19 14:01:21 by fbanzo-s         ###   ########.fr        #
+#    Created: 2024/12/20 17:58:32 by fbanzo-s          #+#    #+#              #
+#    Updated: 2024/12/20 17:58:32 by fbanzo-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-
+NAME = ft_display_file
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-
-SRC_DIR = srcs
-INC_DIR = includes
-SRC_F = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
-SRC = $(addprefix $(SRC_DIR)/, $(SRC_F))
-
+SRC = ft_display_file.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ) Makefile
-	ar rcs $(NAME) $(OBJ)
-
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
