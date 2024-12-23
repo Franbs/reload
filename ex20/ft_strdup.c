@@ -6,7 +6,7 @@
 /*   By: fbanzo-s <fbanzo-s@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:17:40 by fbanzo-s          #+#    #+#             */
-/*   Updated: 2024/12/19 12:46:22 by fbanzo-s         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:34:29 by fbanzo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,20 @@ char	*ft_strdup(char *src)
 	dup[i] = '\0';
 	return (dup);
 }
+/*
+int main()
+{
+    char str[] = "Hello, World!";  // Example string
+
+    // Directly print the length of the string
+    printf("Length: %d\n", ft_length(str));
+
+    // Duplicate the string and print it
+    char *dup = ft_strdup(str);
+    printf("Duplicated: %s\n", dup);
+
+    // Free the allocated memory
+    free(dup);
+
+    return 0;
+}*/

@@ -6,19 +6,21 @@
 /*   By: fbanzo-s <fbanzo-s@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:56:24 by fbanzo-s          #+#    #+#             */
-/*   Updated: 2024/12/19 13:09:02 by fbanzo-s         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:14:24 by fbanzo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 
 int	*ft_range(int min, int max)
 {
 	int	*range;
 	int	i;
 
+	if (min >= max)
+		return NULL;
 	i = 0;
-	range = (int *)malloc((max - min + 1) * sizeof(int));
+	range = (int *)malloc((max - min) * sizeof(int));
 	if (range == NULL)
 		return (NULL);
 	while (min < max)
@@ -30,3 +32,20 @@ int	*ft_range(int min, int max)
 	range[i] = '\0';
 	return (range);
 }
+/*
+int main()
+{
+    int min = 3, max = 8;
+    int *range = ft_range(min, max);
+
+    if (range)
+    {
+        for (int i = 0; i < max - min; i++)
+            printf("%d ", range[i]);
+        printf("\n");
+
+        free(range);  // Free the allocated memory
+    }
+
+    return 0;
+}*/

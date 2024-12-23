@@ -6,15 +6,15 @@
 /*   By: fbanzo-s <fbanzo-s@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:58:34 by fbanzo-s          #+#    #+#             */
-/*   Updated: 2024/12/17 20:01:42 by fbanzo-s         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:09:49 by fbanzo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	ft_swap(int *a, int *b)
 {
-	int	tmp;
+	int	temp;
 
-	tmp = *a;
+	temp = *a;
 	*a = *b;
-	*b = *tmp;
+	*b = *temp;
 }
