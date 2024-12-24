@@ -44,6 +44,17 @@ int	checkerrors(int ac)
 	return (0);
 }
 
+int	checkread(ssize_t bytesread)
+{
+	if (bytesread == -1)
+	{
+		ft_putstr("Error reading file.\n", 2);
+		close(fd);
+		return (0);
+	}
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	int		fd;
@@ -61,6 +72,8 @@ int	main(int ac, char **av)
 	bytesread = read(fd, buffer, 4096 - 1);
 	while (bytesread > 0)
 	{
+		if (checkread == 0)
+			return (0);
 		buffer[bytesread] = '\0';
 		ft_putstr(buffer, 1);
 		bytesread = read(fd, buffer, 4096 - 1);

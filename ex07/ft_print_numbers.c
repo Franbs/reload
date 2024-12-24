@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbanzo-s <fbanzo-s@student.42barcelon      +#+  +:+       +#+        */
+/*   By: fbanzo-s <fbanzo-s@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:41:08 by fbanzo-s          #+#    #+#             */
-/*   Updated: 2024/12/23 12:22:07 by fbanzo-s         ###   ########.fr       */
+/*   Updated: 2024/12/24 18:14:57 by fbanzo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+void	ft_putchar(char c);
 
 void	ft_print_numbers(void)
 {
