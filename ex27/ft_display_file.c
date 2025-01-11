@@ -6,32 +6,25 @@
 /*   By: fbanzo-s <fbanzo-s@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:35:41 by fbanzo-s          #+#    #+#             */
-/*   Updated: 2024/12/20 16:35:41 by fbanzo-s         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:55:40 by fbanzo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
 
-int	ft_strlen(char *str)
+void	ft_putstr(char *str, int filedesc)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	while (str[i])
+		write(filedesc, &str[i++], 1);
 }
 
-void	ft_putstr(char *str, int filedesc)
+int	ft_checkerrors(int ac)
 {
-	if (str != NULL)
-		write(filedesc, str, ft_strlen(str));
-}
-
-int	checkerrors(int ac)
-{
-	if (ac <= 1)
+	if (ac < 2)
 	{
 		ft_putstr("File name missing.\n", 2);
 		return (1);
@@ -44,40 +37,38 @@ int	checkerrors(int ac)
 	return (0);
 }
 
-int	checkread(ssize_t bytesread)
+int	ft_checkfd(int fd)
 {
-	if (bytesread == -1)
-	{
-		ft_putstr("Error reading file.\n", 2);
-		close(fd);
-		return (0);
-	}
-	return (1);
-}
-
-int	main(int ac, char **av)
-{
-	int		fd;
-	ssize_t	bytesread;
-	char	buffer[4096];
-
-	if (checkerrors(ac) == 1)
-		return (0);
-	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putstr("Cannot read file.\n", 2);
 		return (0);
 	}
-	bytesread = read(fd, buffer, 4096 - 1);
+	return (1);
+}
+
+void	ft_print(const char *fn)
+{
+	int		fd;
+	ssize_t	bytesread;
+	char	buffer[4096];
+
+	fd = open(fn, O_RDONLY);
+	if (ft_checkfd(fd) == 0)
+		return ;
+	bytesread = read(fd, buffer, 4096);
 	while (bytesread > 0)
 	{
-		if (checkread == 0)
-			return (0);
-		buffer[bytesread] = '\0';
-		ft_putstr(buffer, 1);
-		bytesread = read(fd, buffer, 4096 - 1);
+		write(1, buffer, bytesread);
+		bytesread = read(fd, buffer, 4096);
 	}
 	close(fd);
+}
+
+int	main(int ac, char **av)
+{
+	if (ft_checkerrors(ac) == 1)
+		return (1);
+	ft_print(av[1]);
 	return (0);
 }

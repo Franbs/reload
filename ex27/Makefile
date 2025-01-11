@@ -6,27 +6,45 @@
 #    By: fbanzo-s <fbanzo-s@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/20 17:58:32 by fbanzo-s          #+#    #+#              #
-#    Updated: 2024/12/20 17:58:32 by fbanzo-s         ###   ########.fr        #
+#    Updated: 2025/01/11 14:02:28 by fbanzo-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_display_file
-CC = cc
+SRCS = ft_display_file.c
+
 CFLAGS = -Wall -Wextra -Werror
-SRC = ft_display_file.c
-OBJ = $(SRC:.c=.o)
+CC = cc
+AR = ar -rcs
+
+OBJDIR = build
+OBJS = $(addprefix $(OBJDIR)/, ${SRCS:.c=.o})
+
+PURPLE = \033[0;35m
+BLUE   = \033[0;34m
+RESET  = \033[m
 
 all: $(NAME)
 
-$(NAME): $(OBJ) Makefile
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+$(OBJDIR)/%.o : %.c | $(OBJDIR)
+	@printf "%-42b%b" "$(PURPLE)$(<):" "$(BLUE)$(@F)$(RESET)\n"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
-	rm -f $(OBJ)
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
+$(NAME): $(OBJS)
+	@printf "%-42b%b" "$(PURPLE)$(*F):" "$(BLUE)$(@)$(RESET)\n"
+	@$(CC) $(OBJS) $(CFLAGS) -o $@ 
 
 fclean: clean
-	rm -f $(NAME)
+	@printf "%b" "$(BLUE)$(@)ing...$(RESET)\n"
+	@rm -rf $(NAME)
 
-re: fclean all
+clean:
+	@printf "%b" "$(BLUE)$(@)ing...$(RESET)\n"
+	@rm -rf $(OBJDIR)
+
+re:    fclean all
 
 .PHONY: all clean fclean re
